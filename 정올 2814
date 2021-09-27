@@ -1,0 +1,29 @@
+package 정올;
+
+import java.util.Scanner;
+
+public class Main2814 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		String str=sc.nextLine();
+		char[] charArr = str.toCharArray();	// 문자열 char형 배열에 각각 저장
+		
+		int [] arr = new int[str.length()]; // char형 배열을 int형으로 바꿔담을 배열선언
+		int sum = 0;
+		
+		int two = 1;	// 2의 n승을 곱해주는 연산자
+		
+		for(int i = str.length() -1; i >= 0; i--) {
+			arr[i] = (charArr[i]-'0') * two; //문자값에 문자 0을 빼주어 아스키코드 값의 연산으로 실제 숫자값을 구함
+			
+			sum += arr[i];
+			two *= 2;
+
+		}
+		
+		System.out.println(sum);
+	}
+
+}
