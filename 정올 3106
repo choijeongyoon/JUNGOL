@@ -1,0 +1,81 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
+ 
+public class Main3106 {
+ 
+    public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+ 
+    public static void main(String[] args) throws IOException {
+        
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+        int i;
+         
+        int jinsu;
+        String n;
+        long jinsuConvert;
+        long returngap;
+                 
+        for (i = 0; ; i++) {
+            st = new StringTokenizer(in.readLine());
+            jinsu = Integer.parseInt(st.nextToken());
+ 
+            if (jinsu == 0) {
+                return;
+            }
+            n = st.nextToken();
+ 
+            jinsuConvert = Integer.parseInt(st.nextToken());
+ 
+            returngap = change(jinsu, n);
+            if(returngap==0)bw.write("0");
+             
+            change_se(returngap, jinsuConvert);
+            bw.write("\n");
+            bw.flush();
+        }
+    }
+     
+    private static long change(long jin, String t) {
+        int i;
+        int len;
+        long ten = 0;
+         
+        len = t.length();
+         
+        for (i = 0; i < len; i++) {
+            if (Character.isDigit(t.charAt(i))) {
+                ten = ten * jin + (t.charAt(i) - '0');              
+            }
+            else {
+                ten = ten * jin + (t.charAt(i) - 'A' + 10); 
+            }
+        }
+        return ten;
+    }
+     
+    private static void change_se(long returngap, long jinsuConvert) throws IOException {
+       
+        if (returngap == 0) 
+        	return;
+        change_se(returngap / jinsuConvert, jinsuConvert);
+        
+        if (returngap % jinsuConvert >= 10) {
+        	
+            bw.write(String.format("%c", (char)(returngap % jinsuConvert - 10 + 'A')));
+            bw.flush();
+            
+        }
+        else {
+        	
+            bw.write(String.format("%d", returngap % jinsuConvert));
+            bw.flush();
+            
+        }
+    }
+ 
+}
