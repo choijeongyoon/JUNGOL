@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class Main1534 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int N = sc.nextInt();	// 10진수 입력
+			
+		int way = sc.nextInt();	// 2, 8, 16 진수 입력
+		
+		int i;
+		
+		char[] str = new char[100];	// char 형 배열 선언
+		
+		if(way == 16) {	// 16진수 일때
+			for(i = 0; N > 0; N /= way, i++) {
+				if(N % way > 9) {
+					str[i] = (char) ((N % way) - 10 + 'A');
+				} else {
+					str[i] = (char) ((N % way) + '0');
+				}
+			}
+		}
+		else {	// 2, 8 진수 일때
+			for(i = 0; N > 0; N /= way, i++) {
+				str[i] = (char)((N % way) + '0');
+			}
+		}
+		i--;
+		for(; i >= 0; i--) {
+			System.out.print(str[i]);
+		}
+	}
+
+}
