@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+       
+     
+        int N = sc.nextInt();	// 정수 N
+        int K = sc.nextInt();	// N의 약수 중 K번째로 작은 수
+        
+        int cnt = 0;
+        
+        for(int i = 1; i < N; i++) {
+        	if (N % i == 0) {
+        		cnt++;
+        		if (cnt == K) {
+        			System.out.print(i);
+        			break;
+        		}
+        	}
+        }
+        
+        if(cnt < K)
+        	System.out.println("0");
+        
+    }
+}
