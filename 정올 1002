@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class Main {
+	
+	
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+       
+     
+        int n = sc.nextInt();	// 정수 n 입력
+        
+        int arr[] = new int[n];
+        
+        for(int i = 0; i < n; i++) {
+        	arr[i] = sc.nextInt();
+        }
+        
+        int maxdiv = arr[0], minmul = arr[0];
+        
+        for(int i = 1; i < n; i++) {
+        	maxdiv = calc(maxdiv, arr[i]);
+        	minmul = (minmul * arr[i]) / calc(minmul, arr[i]);
+        }
+        System.out.println(maxdiv + " " + minmul);
+        
+    }
+    
+    private static int calc(int a, int b) {
+    	int maxdiv = 0;
+    	int min = Math.min(a, b);
+    	
+    	for(int i = 1; i <= min; i++) {
+    		if(a % i == 0 && b % i == 0){
+    			maxdiv = i;
+    		}
+    	}
+    	return maxdiv;
+    }
+
+}
