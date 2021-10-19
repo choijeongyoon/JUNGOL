@@ -1,0 +1,102 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+	
+
+		Scanner sc = new Scanner(System.in);
+		
+		int n = sc.nextInt();
+		
+		int size = 2 * n - 1;		// 배열크기계산
+		int m = n;				// 반복횟수
+		
+		char[][] arr = new char[size][size];
+		char input = 'A';
+		
+		int row = -1;				// 행번호
+		int col = n;				// 열번호
+		int r = 1;				// 행 증분값
+		int c = -1;			// 열 증분값
+		
+		// 배열에 입력받기
+		while (m > 0) {
+			
+			// 왼쪽아래입력
+			for (int i = 0; i < m; i++) {
+				row += r;
+				col += c;
+				
+				arr[row][col] = input;
+				
+				input++;
+				if (input > 'Z') input = 'A';
+			}
+			
+			m--;			// 반복횟수 감소
+			c *= -1;	// 열 입력방향 전환
+			
+			// 오른쪽아래입력
+			for (int i = 0; i < m; i++) {
+				row += r;
+				col += c;
+				
+				arr[row][col] = input;
+				
+				input++;
+				if (input > 'Z') input = 'A';
+			}
+			
+			r *= -1;	// 행 입력반환 전환
+			
+			// 오른쪽위입력
+			for (int i = 0; i < m; i++) {
+				row += r;
+				col += c;
+				
+				arr[row][col] = input;
+				
+				input++;
+				if (input > 'Z') input = 'A';
+			}
+			
+			m--;			// 반복횟수 감소
+			c *= -1;	// 열 입력방향 전환
+			
+			// 왼쪽위입력
+			for (int i = 0; i < m; i++) {
+				row += r;
+				col += c;
+				
+				arr[row][col] = input;
+				
+				input++;
+				if (input > 'Z') input = 'A';
+			}
+
+			m++;			// 반복횟수 증가
+			row--;			// 시작 행 증가
+			r *= -1;	// 행 입력반환 전환
+			
+		}
+		
+		// 배열 출력
+		for (int i = 0; i < size; i++) {
+			
+			for (int j = 0; j < size; j++) {
+				
+				// 문자가 입력된 곳만 출력하고 나머지는 빈칸처리한다.
+				if (arr[i][j] != 0)
+					System.out.print(arr[i][j] + " ");
+				else
+					System.out.print("  ");
+			}
+			
+			System.out.println();
+		}
+		
+		sc.close();
+	}
+
+}
