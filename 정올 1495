@@ -1,0 +1,127 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int n = sc.nextInt();
+		
+		int[][] arr = new int[n][n];
+		
+		arr[0][0] = 1;
+		int num = 2;
+		int max = 1;
+		
+		// 왼쪽 위 삼각형
+		for (int i = 1; i < n; i++) {
+			
+			for (int j = 0; j <= i; j++) {
+				
+				if (i % 2 == 1)
+					arr[max - j][j] = num++;
+				else
+					arr[j][max - j] = num++;
+			}
+			
+			max++;
+			
+		}
+		
+		// 오른쪽 아래 삼각형
+		for (int i = 1; i < n; i++) {
+			
+			for (int j = n - 1; j >= i; j--) {
+				
+				if (i % 2 == 1)
+					arr[j][max - j] = num++;
+				else
+					arr[max - j][j] = num++;
+			}
+			
+			max++;
+			
+		}
+			
+		// 배열 출력
+		for (int i = 0; i < n; i++) {
+			
+			for (int j = 0; j < n; j++) {
+				System.out.print(arr[i][j] + " ");
+			}
+			
+			System.out.println();
+		}
+		
+		sc.close();
+	}
+
+}
+
+-----------------------------------------------------
+
+import java.util.Scanner;
+
+public class Main {
+
+public static void main(String[] args) {
+        
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        in.close();
+     
+         
+        int[][] arr = new int[n][n];
+        
+        // 배열에 입력할 증가값 
+        int cnt = 1;
+         
+        // 배열의 현재 위치 
+        int x = 0;
+        int y = 0;
+        
+        // 0, 0 위치를 1로 초기화 
+        arr[x][y] = cnt++;
+         
+        while(cnt <= n*n) {
+             
+        	// x가 n보다 작은 동안은 x 증가, 이후에는 y 증가 
+            if(x + 1 < n) {
+                x++;
+            } else {
+                y++;
+            }
+             
+            arr[x][y] = cnt++;
+            
+            // 우상향으로 이동 
+            while(x - 1 > -1 && y + 1 < n) {                
+                arr[--x][++y] = cnt++;
+            }
+             
+            // y가 n 보다 작은 동안은 y 증가, 이후에는 x증가  
+            if(y + 1 < n) {
+                y++;
+            } else {
+                x++;
+            }
+             
+            arr[x][y] = cnt++;
+             
+            // 좌하향으로 이동 
+            while(y - 1 > -1 && x + 1 < n) {
+                arr[++x][--y] = cnt++;
+            }
+        }
+         
+        // 결과 출력 
+        for(int[] k : arr) {
+            for(int m : k) {
+                System.out.printf("%d ", m);
+            }
+             
+            System.out.println();
+        }
+    }
+}
