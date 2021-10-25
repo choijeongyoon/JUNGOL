@@ -1,0 +1,28 @@
+package 정올;
+
+import java.util.Scanner;
+
+public class Main2604 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		String bowl = sc.next();
+		
+		char[] arr = bowl.toCharArray();	// 스트링을 새로운 문자배열로 변환
+		int height = 10;
+		
+		for(int i = 1; i < arr.length; i++) {
+			if(arr[i] == arr[i - 1]) {	// 같은 방향
+				height += 5;
+			} else {	// 다른 방향
+				height += 10;
+			}
+			
+		}
+		System.out.println(height);
+		sc.close();
+
+	}
+
+}
