@@ -1,0 +1,49 @@
+package 정올;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+import java.util.TreeMap;
+
+public class Main1516 {
+
+	public static void main(String[] args) throws IOException{
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	
+			while(true) {
+				StringTokenizer st;
+				String s = br.readLine();
+				if(s.equals("END"))	// END 만나면 종료
+					break;
+				
+				st = new StringTokenizer(s, " ");	// 공백기준 단어 끊어 읽기
+				int size = st.countTokens();	// Token(단어)수 = 배열사이즈 크기
+												// countToken -> 현재 남아있는 Token의 개수를 반환
+				
+				String arr[] = new String[size];	// 문장 안 단어 담을 스트링 배열
+				
+				for(int i = 0; i < size; i++) {
+					arr[i] = st.nextToken();	// nextToken -> 다음 Token 반환
+				}
+				
+				// 오름차순 후 개수 세기
+				Arrays.sort(arr);
+
+				
+				int idx = 0, cnt = 1;
+				for(int i = 1; i < arr.length; i++) {	// 서로 다른 단어 발견 시
+					if(!arr[idx].equals(arr[i])) {
+						System.out.println(arr[idx] + " " + ":" + " " + cnt);
+						idx = i;
+						cnt = 1;	// 횟수 초기화
+						continue;
+					}
+					cnt++;
+				}
+				System.out.println(arr[idx] + " " + ":" + " " + cnt);
+			}
+			}
+
+}
